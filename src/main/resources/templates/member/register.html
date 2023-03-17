@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymelef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>회원 가입</title>
+<script th:src="@{/script/jquery-3.6.3.js}"></script>
+<script th:src="@{/script/register.js}"></script>
+<script th:src="@{/script/membercheck.js}"></script>
+</head>
+<body>
+	<h1>[ SES blog 회원 가입 ]</h1>
+	<form th:action="@{/member/register}" method="POST" onsubmit="return validate();">
+		<div>
+		</div>
+		<table>
+			<tr>
+				<td colspan="2"><span id="idcheck" name="idcheck"></span></td>
+			</tr>
+			<br>
+			<tr>
+				<td><label for="blogid">ID</label></td>
+				<td><input type="text" name="blogid" id="blogid" placeholder="아이디는 3~10자리로 입력" required></td>
+			</tr>
+			<br>
+			<tr>
+				<td><label for="blogpwd">비밀번호&nbsp;&nbsp;&nbsp;</label></td>
+				<td><input type="password" name="blogpwd" id="blogpwd" placeholder="비밀번호는 3~10자리로 입력" required></td>
+			</tr>
+			<br>
+			<tr>
+				<td><label for="bloggerid">이름</label></td>
+				<td><input type="text" name="bloggername" id="bloggername" required></td>
+			</tr>
+			<br>
+		</table>
+		<br><br><br>
+		<div>
+			<span>사진 선택&nbsp;&nbsp;</span>
+			<span><input type="radio" value="1" name="photo" id="photo" checked="checked"><img th:src="@{/images/1.png}">&nbsp;</span>
+			<span><input type="radio" value="2" name="photo" id="photo"><img th:src="@{/images/2.png}">&nbsp;</span>
+			<span><input type="radio" value="3" name="photo" id="photo"><img th:src="@{/images/3.png}">&nbsp;</span>
+			<span><input type="radio" value="4" name="photo" id="photo"><img th:src="@{/images/4.png}">&nbsp;</span>
+		</div>
+		<br><br id="submitabove" name="submitabove">
+		<input type="submit" name="complete" id="complete" value="가입">
+	</form>
+</body>
+</html>

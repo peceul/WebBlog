@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymelef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+</head>
+<body>
+	<h1>[ [[${blogid}]]님의 블로그 ]</h1>
+	<table border="1">
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>등록일</th>
+		</tr>
+		<th:block th:each="bloglist,status:${bloglist}">
+			<tr>
+				<td>[[${status.count}]]</td>
+				<td><a th:href="@{/board/read(boardid=${bloglist.blogseq})}">[[${bloglist.title}]]</a></td>
+				<td>[[${bloglist.regdate}]]</td>
+			</tr>
+		</th:block>
+		<th:block th:if="${blogid} == ${#authentication.name}">
+			<tr>
+				<td colspan="3" style="text-align:center;">
+					<a th:href="@{/board/write}"><input type="submit" value="글쓰기"></a>
+				</td>
+			</tr>
+		</th:block>
+	</table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymelef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>블로그 목록</title>
+</head>
+<body>
+	<h1>[ SES Blog 목록 ]</h1>
+	<th:block th:each="memberlist:${memberlist}">
+		<div>
+			<span th:switch="${memberlist.photo}">
+				<img th:case="1" th:src="@{/images/1.png}">
+				<img th:case="2" th:src="@{/images/2.png}">
+				<img th:case="3" th:src="@{/images/3.png}">
+				<img th:case="4" th:src="@{/images/4.png}">
+			</span>
+			<span>
+				<a th:href="@{/board(blogid=${memberlist.blogid})}">
+					[[${memberlist.bloggername}]] ([[${memberlist.blogid}]])님의 블로그 보러 가기
+				</a>
+			</span>
+		</div>
+		<br>
+	</th:block>
+</body>
+</html>

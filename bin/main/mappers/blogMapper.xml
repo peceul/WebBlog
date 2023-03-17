@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="net.softsociety.blog.dao.BlogDAO">
+ 
+ 	<select id="getBlogList" parameterType="String" resultType="Blog">
+ 		SELECT blogseq, title, regdate FROM blog_board WHERE blogid = #{blogid}
+ 	</select>
+ 
+ 	<insert id="writeBlog" parameterType="Blog">
+ 		INSERT INTO blog_board (blogseq, blogid, title, blogtext)
+ 		VALUES (blog_board_seq.NEXTVAL, #{blogid}, #{title}, #{blogtext})
+ 	</insert>
+ 
+ 	 <select id="getReadBlog" parameterType="int" resultType="Blog">
+ 		SELECT blogseq, blogid, title, blogtext, likecnt, TO_CHAR(regdate, 'YYYY-MM-DD HH:mi:ss') AS regdate FROM blog_board WHERE blogseq = #{blogseq}
+ 	</select>
+ 	
+ 	<delete id="removeBlog" parameterType="int">
+ 		DELETE FROM blog_board WHERE blogseq = #{blogseq}
+ 	</delete>
+ 	
+ 	<update id="updateBlog" parameterType="Blog">
+ 		UPDATE blog_board SET title = #{title}, blogtext=#{blogtext} WHERE blogseq=#{blogseq}
+ 	</update>
+ 	
+ 	<update id="increaseRecommend" parameterType="int">
+ 		UPDATE blog_board SET likecnt = likecnt + 1 WHERE blogseq = #{blogseq}
+ 	</update>
+ 	
+ 	<select id="getRecommendCount" parameterType="int" resultType="int">
+ 		SELECT likecnt FROM blog_board WHERE blogseq = #{blogseq} 
+ 	</select>
+ 	
+ </mapper>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymelef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>게시글 수정</title>
+<script th:inline="javascript" th:src="@{/script/boardupdate.js}"></script>
+</head>
+<body>
+	<h1>[ Blog 글수정 ]</h1>
+	<form th:action="@{/board/update}" method="POST" name="updateboard" id="updateboard">
+		<input type="hidden" name="blogid" id="blogid" th:value="${#authentication.name}"> 
+		<input type="hidden" name="blogseq" id="blogseq" th:value="${blogread.blogseq}"> 
+		<div>
+			<span>
+				<label for="title"><B>제목&nbsp;&nbsp;</B></label>
+				<input type="text" name="title" id="title" style="width:500px;" th:value="${blogread.title}" required>
+			</span>
+		</div>
+		<br>
+		<div>
+			<span>
+				<label for="blogtext"><B>내용&nbsp;&nbsp;</B></label>
+				<input type="text" name="blogtext" id="blogtext" style="height:500px; width:500px;"  th:value="${blogread.blogtext}" required>			
+			</span>
+		</div>
+		<br>
+		<div style="margin : 0 0 0 260px;">
+			<input type="button" value="수정" onclick="return update();">
+		</div>
+	</form>
+</body>
+</html>

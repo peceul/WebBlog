@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymelef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+</head>
+<body>
+	<h1>[ 로그인 ]</h1>
+	<div th:if="${param.error}" style="color:red;">ID나 비밀번호가 잘못되었습니다.</div>
+	<form th:action="@{/member/login}" method="POST">
+		<table>
+			<tr>
+				<td><label for="blogid">ID</label></td>
+				<td><input type="text" name="blogid" id="blogid" placeholder="3~10자리로 입력하세요." required></td>
+			</tr>
+			<tr>
+				<td><label for="blogpwd">Password</label>&nbsp;&nbsp;</td>
+				<td><input type="password" name="blogpwd" id="blogpwd" placeholder="3~10자리로 입력하세요." required></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align:center;">
+					<input type="submit" name="complete" id="complete" value="로그인">
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

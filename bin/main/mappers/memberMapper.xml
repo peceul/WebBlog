@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="net.softsociety.blog.dao.MemberDAO">
+ 	
+ 	<insert id="registerMember" parameterType="Member">
+ 		INSERT INTO blog_member (blogid, blogpwd, bloggername, photo)
+ 		VALUES (#{blogid}, #{blogpwd}, #{bloggername}, #{photo})
+ 	</insert>
+ 	
+ 	<select id="getMemberlist" resultType="Member">
+ 		SELECT blogid, bloggername, photo FROM blog_member ORDER BY blogid ASC
+ 	</select>
+ 	
+ 	<select id="checkMemberid" parameterType="Member" resultType="Member">
+ 		SELECT blogid FROM blog_member WHERE blogid = #{blogid}
+ 	</select>
+ </mapper>

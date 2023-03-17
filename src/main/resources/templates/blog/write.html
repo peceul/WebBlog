@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymelef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>글쓰기</title>
+</head>
+<body>
+	<h1>[ Blog 글쓰기 ]</h1>
+	<form th:action="@{/board/write}" method="POST">
+		<input type="hidden" name="blogid" id="blogid" th:value="${#authentication.name}"> 
+		<div>
+			<span>
+				<label for="title"><B>제목&nbsp;&nbsp;</B></label>
+				<input type="text" name="title" id="title" style="width:500px;" required>
+			</span>
+		</div>
+		<br>
+		<div>
+			<span>
+				<label for="blogtext"><B>내용&nbsp;&nbsp;</B></label>
+				<input type="text" name="blogtext" id="blogtext" style="height:500px; width:500px;" required>			
+			</span>
+		</div>
+		<br>
+		<div style="margin : 0 0 0 260px;">
+			<input type="submit" value="저장">
+		</div>
+	</form>
+</body>
+</html>

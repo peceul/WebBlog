@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:sec="http://www.thymelef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>게시글 읽기</title>
+<script th:inline="javascript" th:src="@{/script/jquery-3.6.3.js}"></script>
+<script th:inline="javascript" th:src="@{/script/board.js}"></script>
+<script th:inline="javascript" th:src="@{/script/recommend.js}"></script>
+</head>
+<body>
+	<input type="hidden" id="address" name="address" th:value="@{/board/recommend}">
+	<h1>[ [[${blogid}]]님의 블로그 ]</h1>
+	<table border="1">
+		<tr>
+			<td>제목</td>
+			<td>[[${blogread.title}]]</td>
+		</tr>
+		<tr>
+			<td>작성일</td>
+			<td>[[${blogread.regdate}]]</td>
+		</tr>
+		<tr>
+			<td>내용</td>
+			<td>[[${blogread.blogtext}]]</td>
+		</tr>
+		<tr>
+			<td id="countlabel">추천 수</td>
+			<td id="likecount" name="likecount" style="text-align:center;">[[${blogread.likecnt}]]</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align:center;">
+				<input type="button" id="recommend" name="recommend" value="추천하기" th:onclick="recommend([[${blogread.blogseq}]]);">
+				<th:block th:if="${#authentication.name == blogid}">
+					<input type="button" id="update" name="update" value="수정" th:onclick="update([[@{/board/update(boardid=${blogread.blogseq})}]]);">
+					<input type="button" id="delete" name="delete" value="삭제" th:onclick="remove([[@{/board/remove(boardid=${blogread.blogseq})}]]);">
+				</th:block>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
